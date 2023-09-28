@@ -34,7 +34,7 @@ public class Inscrito {
     private Long id;
     @Size(max = 20)
     @Column(name="cui",length = 20,nullable = false)
-    private String cui;  
+    private String cui;
     @Size(max = 20)
     @Column(name="tipo_cui",length = 20,nullable = false)
     private String tipoCui;
@@ -43,12 +43,12 @@ public class Inscrito {
     private String evidensPay;
     @Size(max = 2)
     @Column(name="offlinex",length = 2,nullable = false)
-    private String offlinex;  
-    
+    private String offlinex;
+
     @JoinColumn(name = "actividad_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @JsonIgnoreProperties({"asistenciaxs", "inscritos", "subactasisxs", "materialesxs"})
-    private Actividad actividadId;  
-    
-   
+    private Actividad actividadId;
+
+
 }

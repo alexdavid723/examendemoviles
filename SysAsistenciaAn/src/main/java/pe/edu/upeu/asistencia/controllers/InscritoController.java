@@ -5,11 +5,13 @@
 package pe.edu.upeu.asistencia.controllers;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upeu.asistencia.dtos.InscritoDto;
+import pe.edu.upeu.asistencia.models.Actividad;
 import pe.edu.upeu.asistencia.models.Inscrito;
 import pe.edu.upeu.asistencia.services.InscritoService;
 
@@ -30,9 +32,28 @@ public class InscritoController {
 
         //Gson gson = new Gson();
         //String jsonCartList = gson.toJson(actDto);
-        System.out.println("Ver Aqui: "+actDto.get(0).getTipoCui());
-        System.out.println("Ver Aquix: "+actDto.get(0).getActividadId().getNombreActividad());
         return ResponseEntity.ok().body(actDto);
         //return new ResponseEntity<>(actDto, HttpStatus.OK);
+    }
+    @PostMapping("/crear")
+    public ResponseEntity<Inscrito> saveInscrito(@RequestBody InscritoDto.InscritoCrearDto inscrito) {
+        Inscrito data = inscritoService.save(inscrito);
+        return ResponseEntity.ok(data);
+    }
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Inscrito> getEntidadById(@PathVariable Long id) {
+        Inscrito inscrito = inscritoService.getEntidadById(id);
+        return ResponseEntity.ok(inscrito);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteInscrito(@PathVariable Long id) {
+        Inscrito inscrito = inscritoService.getEntidadById(id);
+        return ResponseEntity.ok(inscritoService.delete(inscrito.getId()));
+    }
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<Inscrito> updateInscrito(@PathVariable Long id, @RequestBody Inscrito inscritoDetails) {
+        Inscrito updatedInscrito = inscritoService.update(inscritoDetails, id);
+        return ResponseEntity.ok(updatedInscrito);
     }
 }

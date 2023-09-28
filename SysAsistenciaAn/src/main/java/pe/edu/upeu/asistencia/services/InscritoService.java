@@ -6,6 +6,8 @@ package pe.edu.upeu.asistencia.services;
 
 import java.util.List;
 import java.util.Map;
+
+import pe.edu.upeu.asistencia.dtos.InscritoDto;
 import pe.edu.upeu.asistencia.models.Inscrito;
 
 /**
@@ -14,7 +16,8 @@ import pe.edu.upeu.asistencia.models.Inscrito;
  */
 public interface InscritoService {
 
-    Inscrito save(Inscrito activiad);
+
+    Inscrito save(InscritoDto.InscritoCrearDto inscrito);
 
     List<Inscrito> findAll();
 

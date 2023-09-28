@@ -33,10 +33,10 @@ sealed class Destinations(
             return "actividadForm?actId=$actId"
         }
     }
-    object FacultadUI: Destinations("facultadUI","Adm. Facultades", Icons.Default.AccountBox)
-    object FacultadForm: Destinations("facultadForm?facId={facId}", "Form facultad", Icons.Filled.Add){
-        fun passId(facId:String?):String{
-            return "facultadForm?facId=$facId"
+    object InscritoUI: Destinations("inscritoUI","adm inscritos", Icons.Default.AccountBox)
+    object InscritoForm: Destinations("inscritoForm?inscId={inscId}", "Form inscrito", Icons.Filled.Add){
+        fun passId(inscId:String?):String{
+            return "inscritoForm?inscId=$inscId"
         }
     }
 

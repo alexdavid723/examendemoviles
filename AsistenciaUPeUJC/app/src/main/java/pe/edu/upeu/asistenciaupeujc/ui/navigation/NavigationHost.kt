@@ -15,8 +15,7 @@ import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.Pantalla4
 import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.Pantalla5
 import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.actividad.ActividadForm
 import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.actividad.ActividadUI
-import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.facultad.FacultadForm
-import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.facultad.FacultadUI
+import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.inscrito.InscritoUI
 import pe.edu.upeu.asistenciaupeujc.ui.presentation.screens.login.LoginScreen
 
 
@@ -66,18 +65,17 @@ fun NavigationHost(
             requireNotNull(actId)
             ActividadForm(text = actId, darkMode = darkMode, navController =navController )
         }
-        //Facultad
-        composable(Destinations.FacultadUI.route){
-            FacultadUI(navegarEditarFac = {newText->navController.navigate(Destinations.FacultadForm.passId(newText))}, navController =navController )
+        composable(Destinations.InscritoUI.route){
+            InscritoUI(navegarEditarAct = {newText->navController.navigate(Destinations.InscritoForm.passId(newText))}, navController =navController )
+        }
+        composable(Destinations.InscritoForm.route, arguments = listOf(navArgument("inscId"){
+            defaultValue="inscId"
+        })){
+                navBackStackEntry -> var inscId=navBackStackEntry.arguments?.getString("inscId")
+            requireNotNull(inscId)
+            ActividadForm(text = inscId, darkMode = darkMode, navController =navController )
         }
 
-        composable(Destinations.FacultadForm.route, arguments = listOf(navArgument("facId"){
-            defaultValue="facId"
-        })){
-                navBackStackEntry -> var facId=navBackStackEntry.arguments?.getString("facId")
-            requireNotNull(facId)
-            FacultadForm(text = facId, darkMode = darkMode, navController =navController )
-        }
 
 
 

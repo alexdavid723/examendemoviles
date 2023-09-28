@@ -10,9 +10,9 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import pe.edu.upeu.asistenciaupeujc.data.local.DbDataSource
 import pe.edu.upeu.asistenciaupeujc.data.local.dao.ActividadDao
-import pe.edu.upeu.asistenciaupeujc.data.local.dao.FacultadDao
+import pe.edu.upeu.asistenciaupeujc.data.local.dao.InscritoDao
 import pe.edu.upeu.asistenciaupeujc.data.remote.RestActividad
-import pe.edu.upeu.asistenciaupeujc.data.remote.RestFacultad
+import pe.edu.upeu.asistenciaupeujc.data.remote.RestInscrito
 import pe.edu.upeu.asistenciaupeujc.data.remote.RestUsuario
 import pe.edu.upeu.asistenciaupeujc.utils.TokenUtils
 import retrofit2.Retrofit
@@ -61,8 +61,8 @@ class DataSourceModule {
     }
     @Singleton
     @Provides
-    fun restFacultad(retrofit: Retrofit):RestFacultad{
-        return retrofit.create(RestFacultad::class.java)
+    fun restInscrito(retrofit: Retrofit): RestInscrito {
+        return retrofit.create(RestInscrito::class.java)
     }
 
 
@@ -80,8 +80,8 @@ class DataSourceModule {
     }
     @Singleton
     @Provides
-    fun facultadDao(db:DbDataSource):FacultadDao{
-        return db.facultadDao()
+    fun inscritoDao(db:DbDataSource): InscritoDao {
+        return db.inscritoDao()
     }
 
 }

@@ -50,7 +50,7 @@ public class Actividad {
 
     @Column(name = "nombre_actividad", nullable = false)
     private String nombreActividad;
-    
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Basic(optional = false)
     @Column(name = "fecha", nullable = false)
@@ -112,5 +112,4 @@ public class Actividad {
     @JoinColumn(name = "actividad_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"actividadId"})
     public List<Materialesx> materialesxs;
-
 }
